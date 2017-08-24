@@ -3,6 +3,6 @@ Checking Correctness of a algorithm used. This has been done by using SVC classi
 
 #### Dependencies required for this :-  
 * Python 3.5.3
-* SKlearn
-* Datetime
+* sklearn
+* datetime
 * pandas
