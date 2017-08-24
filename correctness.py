@@ -40,3 +40,22 @@ def processing_data(df):
     df1 = df1.astype(int)
     return df1
 
+df1_train = processing_data(df_train)
+#print(df1_train)
+#print("\n\n")
+df1_test = processing_data(df_test)
+#print(df1_test)
+#print("\n\n")
+
+classifier = SVC()
+classifier.fit(df1_train.ix[:,:-2], df1_train.ix[:,-1])
+
+predicted_labels = classifier.predict(df1_test.ix[:,:-2])
+
+expected_labels = df1_test.ix[:,-1]
+
+#print(expected_labels,"\n\n", predicted_labels)
+
+accuracy = classifier.score(df1_test.ix[:,:-2], expected_labels)
+
+print("Accuracy of this Clssifier is : " + str(accuracy))
