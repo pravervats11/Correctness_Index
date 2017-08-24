@@ -51,3 +51,6 @@ expected_labels = df1_test.ix[:,-1]
 accuracy = classifier.score(df1_test.ix[:,:-2], expected_labels)
 
 print("Accuracy of this Clssifier is : " + str(accuracy))
+'''
+For this Dataset 3 feature sets were used. This got the accuracy of 99.79%.
+'''
