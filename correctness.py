@@ -59,4 +59,5 @@ print("Accuracy of this Clssifier is : " + str(accuracy))
 
 '''
 For this Dataset 3 feature sets were used. This got the accuracy of 99.79%.
+SVC classifier model was used.
 '''
