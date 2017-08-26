@@ -22,12 +22,15 @@ def processing_data(df):
 
     for i in range(0, len(df["Actual_time"]) - 1):
         df.set_value(i, "Actual_time", datetime.datetime.strptime(df["Actual_time"][i], "%H:%M:%S"))
+    
     for i in range(0, len(df["Predicted_time"]) - 1):
         if df["Predicted_time"][i] != "noTime":
             df.set_value(i, "Predicted_time", datetime.datetime.strptime(df["Predicted_time"][i], "%H:%M:%S"))
+    
     for i in range(0, len(df["Predicted_time"])-1):
         if df["Predicted_time"][i] != "noTime":
             df1.set_value(i, "Diff_time", int((df["Actual_time"][i] - df["Predicted_time"][i]).total_seconds()))
+    
     df1["conf_total"] = df["conf_total"] + df["conf_date"] + df["conf_time"]
 
     for i in range(0,len(df1["Diff_total"])-1):
@@ -35,9 +38,11 @@ def processing_data(df):
             df1.set_value(i,"Actual_result",int(1))
         else:
             df1.set_value(i,"Actual_result",int(0))
+    
     df1 = df1[~df1.Diff_time.isnull()]
     df1 = df1[~df1.Actual_result.isnull()]
     df1 = df1.astype(int)
+    
     return df1
 
 df1_train = processing_data(df_train)
@@ -51,6 +56,7 @@ expected_labels = df1_test.ix[:,-1]
 accuracy = classifier.score(df1_test.ix[:,:-2], expected_labels)
 
 print("Accuracy of this Clssifier is : " + str(accuracy))
+
 '''
 For this Dataset 3 feature sets were used. This got the accuracy of 99.79%.
 '''
